@@ -58,7 +58,7 @@ final class GetAboutTests: XCTestCase {
       XCTAssertEqual($0, 1)
     }
     await httpRequests.withValue {
-      let url = URL(string: "https://www.googleapis.com/drive/v3/about")!
+      let url = URL(string: "https://www.googleapis.com/drive/v3/about?fields=\(About.apiFields)")!
       var expectedRequest = URLRequest(url: url)
       expectedRequest.httpMethod = "GET"
       expectedRequest.allHTTPHeaderFields = [

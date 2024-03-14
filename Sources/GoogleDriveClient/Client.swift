@@ -3,6 +3,7 @@ import Foundation
 public struct Client: Sendable {
   public init(
     auth: Auth,
+    getAbout: GetAbout,
     listFiles: ListFiles,
     getFile: GetFile,
     getFileData: GetFileData,
@@ -11,6 +12,7 @@ public struct Client: Sendable {
     deleteFile: DeleteFile
   ) {
     self.auth = auth
+    self.getAbout = getAbout
     self.listFiles = listFiles
     self.getFile = getFile
     self.getFileData = getFileData
@@ -20,6 +22,7 @@ public struct Client: Sendable {
   }
 
   public var auth: Auth
+  public var getAbout: GetAbout
   public var listFiles: ListFiles
   public var getFile: GetFile
   public var getFileData: GetFileData
@@ -42,6 +45,11 @@ extension Client {
       keychain: keychain,
       dateGenerator: dateGenerator,
       openURL: openURL,
+      httpClient: httpClient
+    )
+    let getAbout = GetAbout.live(
+      auth: auth,
+      keychain: keychain,
       httpClient: httpClient
     )
     let listFiles = ListFiles.live(
@@ -78,6 +86,7 @@ extension Client {
     )
     return Client(
       auth: auth,
+      getAbout: getAbout,
       listFiles: listFiles,
       getFile: getFile,
       getFileData: getFileData,

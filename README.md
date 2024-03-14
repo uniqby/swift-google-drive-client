@@ -12,6 +12,7 @@ Basic Google Drive HTTP API client that does not depend on Google's SDK. No exte
 - Create file (upload)
 - Update file (upload)
 - Delete file
+- Get user info (about)
 
 ## 📖 Usage
 

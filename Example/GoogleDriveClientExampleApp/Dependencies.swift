@@ -46,6 +46,21 @@ extension GoogleDriveClient.Client: DependencyKey {
         refreshToken: {},
         signOut: { await isSignedIn.setValue(false) }
       ),
+      getAbout: .init {
+        About(
+          storageQuota: StorageQuota(
+            limit: "1000000000000",
+            usage: "70000000000"
+          ),
+          appInstalled: true,
+          maxUploadSize: "5242880000000",
+          user: User(
+            displayName: "Test User",
+            emailAddress: "user@preview",
+            photoLink: "https://lh3.googleusercontent.com/a/preview_hash"
+          )
+        )
+      },
       listFiles: .init { _ in
         FilesList(
           nextPageToken: nil,
